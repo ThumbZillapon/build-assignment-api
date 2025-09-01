@@ -11,6 +11,13 @@ app.get("/test", (req, res) => {
 
 app.post("/assignments", async(req, res) => {
   try {
+    const { title, content, category } = req.body;
+    
+    if (!title || !content || !category) {
+      return res.status(400).json({
+        message: "Server could not create assignment because there are missing data from client"
+      });
+    }
     const newAssignment = {
       ...req.body,
       created_at: new Date().toISOString(),
