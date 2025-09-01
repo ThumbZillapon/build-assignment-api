@@ -27,13 +27,13 @@ app.post("/assignments", async(req, res) => {
         newAssignment.category,
       ]
     );
-    return res.json({
+    return res.status(201).json({
       message: "Created assignment sucessfully",
     });
 
  } catch (e) {
-   return res.json({
-     message: "Server could not create assignment because there are missing data from client",
+   return res.status(500).json({
+     message: "Server could not create assignment because database connection",
    });
  }
 })
